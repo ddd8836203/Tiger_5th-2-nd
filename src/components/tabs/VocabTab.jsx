@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Volume2, Play } from 'lucide-react';
 import { speakText } from '../../utils';
 import QuizEngine from '../quiz/QuizEngine';
 import SpellingQuizEngine from '../quiz/SpellingQuizEngine';
 
 export default function VocabTab({ unitData, session }) {
+  const [quizMode, setQuizMode] = useState('choice'); // 預設顯示選擇題
   const vocabData = unitData?.vocabData || [];
   const vocabQuestions = unitData?.quizzes?.vocab || [];
 
@@ -92,28 +93,53 @@ export default function VocabTab({ unitData, session }) {
                 <p className="text-2xl font-extrabold text-yellow-900 italic">"{v.chant}"</p>
               </div>
             )}
-
-
-
           </div>
         ))}
       </div>
 
-      <SpellingQuizEngine 
-        words={vocabData} 
-        title="聽音拼字" 
-        quizType="spelling" 
-        session={session} 
-      />
+      <div className="bg-yellow-50 border-4 border-yellow-300 p-8 rounded-[3rem] mt-12 mb-6">
+        <h3 className="text-4xl font-extrabold text-center text-yellow-800 mb-8">🎯 選擇測驗模式</h3>
+        <div className="flex flex-col md:flex-row justify-center gap-6 mb-8">
+          <button 
+            onClick={() => setQuizMode('choice')} 
+            className={`text-2xl font-bold px-8 py-4 rounded-full transition-all border-4 flex items-center justify-center gap-3 ${quizMode === 'choice' ? 'bg-orange-500 text-white border-orange-600 shadow-lg scale-105' : 'bg-white text-orange-600 border-orange-200 hover:bg-orange-50'}`}
+          >
+            📝 單字選擇題
+          </button>
+          <button 
+            onClick={() => setQuizMode('spelling')} 
+            className={`text-2xl font-bold px-8 py-4 rounded-full transition-all border-4 flex items-center justify-center gap-3 ${quizMode === 'spelling' ? 'bg-blue-500 text-white border-blue-600 shadow-lg scale-105' : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}`}
+          >
+            🎧 聽音拼字挑戰
+          </button>
+        </div>
 
-      {vocabQuestions.length > 0 && (
-        <QuizEngine 
-          questions={vocabQuestions} 
-          title="單字選擇題" 
-          quizType="vocab" 
-          session={session} 
-        />
-      )}
+        {quizMode === 'spelling' && (
+          <div className="animate-fade-in-up">
+            <SpellingQuizEngine 
+              words={vocabData} 
+              title="聽音拼字" 
+              quizType="spelling" 
+              session={session} 
+            />
+          </div>
+        )}
+
+        {quizMode === 'choice' && vocabQuestions.length > 0 && (
+          <div className="animate-fade-in-up">
+            <QuizEngine 
+              questions={vocabQuestions} 
+              title="單字選擇題" 
+              quizType="vocab" 
+              session={session} 
+            />
+          </div>
+        )}
+
+        {quizMode === 'choice' && vocabQuestions.length === 0 && (
+          <p className="text-center text-2xl text-gray-500 font-bold mb-8">此單元尚無選擇題庫喔！</p>
+        )}
+      </div>
     </div>
   );
 }

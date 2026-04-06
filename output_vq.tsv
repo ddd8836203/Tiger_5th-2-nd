@@ -1,0 +1,20 @@
+od3	od3_7	What word means 60 seconds?	["Hour","Minute","Year","Month"]	Minute	★☆☆☆☆	正確答案： B (Minute)。原因： 60秒 (60 seconds) 等於一分鐘 (minute) 7。\n錯誤選項原因： A(小時)是60分鐘，C(年)是12個月，D(月)是約30天 7。
+od3	od3_7	What word means 60 minutes?	["Second","Month","Hour","Day"]	Hour	★☆☆☆☆	正確答案： C (Hour)。原因： 60分鐘 (60 minutes) 組成一小時 (hour) 7。\n錯誤選項原因： A(秒)太短，B(月)與D(天)太長 7。
+od3	od3_7	When the sun is very high at 12:00 in the daytime, it is called:	["Night","Morning","Noon","Evening"]	Noon	★★☆☆☆	正確答案： C (Noon)。原因： 太陽升到最高點的白天12點，我們稱之為正午 (noon) 1。\n錯誤選項原因： A(夜晚)、B(早晨)、D(傍晚) 太陽的位置與時間皆不符合 1。
+od3	od3_7	To turn around fast like a top means to:	["Orbit","Spin","Jump","Walk"]	Spin	★★★☆☆	正確答案： B (Spin)。原因： 像陀螺一樣快速原地旋轉的動作叫做自轉 (spin) 2。\n錯誤選項原因： A(公轉/軌道)是繞著另一物體轉，C(跳)、D(走)皆不是旋轉的意思 2。
+od3	od3_7	The imaginary line the Earth turns on is the:	["Axis","Time zone","Planet","Star"]	Axis	★★★☆☆	正確答案： A (Axis)。原因： 地球賴以自轉的那條假想線稱為軸心 (axis) 2。\n錯誤選項原因： B(時區)、C(行星)、D(恆星) 都不是貫穿地球中心的旋轉軸 2。
+od3	od3_7	What is Earth?	["A star","A sun","A planet","A moon"]	A planet	★★☆☆☆	正確答案： C (A planet)。原因： 課文圖片與背景知識皆表明地球是一顆行星 (planet) 3。\n錯誤選項原因： A(恆星)與B(太陽)會發光，D(衛星/月亮)繞著行星轉，地球不屬於這三者 3。
+od3	od3_7	How do we find the total minutes in a day? We ___ 24 by 60.	["Add","Subtract","Multiply","Divide"]	Multiply	★★★☆☆	正確答案： C (Multiply)。原因： 為了得到一天的總分鐘數，我們將24和60「相乘 (multiply)」 2。\n錯誤選項原因： A(加)、B(減)、D(除) 無法計算出 1440 總分鐘數 2。
+od3	od3_7	When something goes around the sun, it ___ the sun.	["Spins","Orbits","Measures","Prepares"]	Orbits	★★★☆☆	正確答案： B (Orbits)。原因： 繞著太陽運行的動作稱為「公轉 (orbits)」 3。\n錯誤選項原因： A(自轉)是原地轉，C(測量)與D(準備)完全不符合天文運動的情境 3。
+od3	od3_7	To find out how long or big something is, we ___ it.	["Measure","Opposite","Accurate","Suggest"]	Measure	★★★☆☆	正確答案： A (Measure)。原因： 找出某物的長度或大小，這個動作稱為測量 (measure) 4。\n錯誤選項原因： B(相反的)、C(準確的)是形容詞，D(建議)與測量無關 4。
+od3	od3_7	The time on the ___ side of the Earth is different.	["Accurate","Orbit","Opposite","Multiply"]	Opposite	★★★☆☆	正確答案： C (Opposite)。原因： 課文提到在地球的「另一端/相對的一側 (opposite side)」，時間是不同的 4。\n錯誤選項原因： A(準確的)、B(軌道)、D(相乘) 放在句子中語意不通 4。
+od3	od3_7	If something is perfectly correct, it is very:	["Accurate","Spin","Planet","Opposite"]	Accurate	★★★★☆	正確答案： A (Accurate)。原因： 完美正確、沒有誤差的狀態形容為「精確的 (accurate)」 3。\n錯誤選項原因： B(旋轉)、C(行星)、D(相反的) 的字義皆不代表正確無誤 3。
+od3	od3_7	12 of these make a year.	["Days","Hours","Months","Seconds"]	Months	★☆☆☆☆	正確答案： C (Months)。原因： 12個「月份 (months)」組成一年 3。\n錯誤選項原因： 12天、12小時、12秒皆無法組成一年 3。
+od3	od3_7	Because the Earth is big, it has 24 different:	["Orbits","Planets","Time zones","Months"]	Time zones	★★☆☆☆	正確答案： C (Time zones)。原因： 地球被劃分成了24個「時區 (time zones)」 4。\n錯誤選項原因： 地球只有一個軌道(Orbits)和自己這顆行星(Planets)，且一年有12個月份(Months)，皆非24 4。
+od3	od3_7	The verb "prepare" becomes which noun?	["Preparation","Preparing","Prepared","Preparer"]	Preparation	★★★☆☆	正確答案： A (Preparation)。原因： 本單元教授加上字尾 "-tion" 將動詞轉名詞，prepare 會變成 preparation 8。\n錯誤選項原因： B與C是動詞的變形(-ing, -ed)，D雖是名詞(準備者)但不符合本課的 -tion 規則 8。
+od3	od3_7	A big party for a special day is a:	["Suggestion","Information","Celebration","Accurate"]	Celebration	★★★☆☆	正確答案： C (Celebration)。原因： 為特殊日子舉辦的大型派對稱為「慶祝活動 (celebration)」 8。\n錯誤選項原因： A(建議)、B(資訊)、D(準確的) 皆不符合派對的意思 8。
+od3	od3_7	If I tell you a good idea, I make a:	["Preparation","Suggestion","Planet","Axis"]	Suggestion	★★★☆☆	正確答案： B (Suggestion)。原因： 告訴別人一個好點子，就是提出一個「建議 (suggestion)」 8。\n錯誤選項原因： A(準備)、C(行星)、D(軸心) 的意思不符合提供點子的情境 8。
+od3	od3_7	Facts and details you read online or in a book are called:	["Information","Celebration","Month","Orbit"]	Information	★★★☆☆	正確答案： A (Information)。原因： 從網路或書本讀到的事實和細節，總稱為「資訊 (information)」 8。\n錯誤選項原因： B(慶祝活動)、C(月份)、D(軌道) 皆不是指吸收的知識或細節 8。
+od3	od3_7	The Earth takes 365 days to complete one:	["Year","Minute","Second","Hour"]	Year	★☆☆☆☆	正確答案： A (Year)。原因： 地球需要365天才能完成一「年 (year)」的公轉 3。\n錯誤選項原因： 365天遠遠超過一分鐘、一秒鐘或一小時 3。
+od3	od3_7	Which is the smallest amount of time?	["Hour","Minute","Second","Day"]	Second	★☆☆☆☆	正確答案： C (Second)。原因： 在這些時間單位中，「秒 (second)」是最短的單位 2。\n錯誤選項原因： 小時(Hour)、分鐘(Minute)、天(Day) 皆大於秒 2。
+od3	od3_7	Which of these is a verb?	["Celebration","Multiply","Information","Opposite"]	Multiply	★★★★☆	正確答案： B (Multiply)。原因： Multiply 意為「相乘」，是一個動作（動詞） 2。\n錯誤選項原因： A(慶祝)與C(資訊)結尾是 -tion，為名詞；D(相反的)是形容詞 [2]4。
