@@ -45,6 +45,17 @@ export default function Home({ baseData, initialName = '', onStart }) {
               className="w-full text-3xl font-bold p-4 outline-none rounded-2xl border-4 border-orange-300 focus:border-orange-500 transition-colors"
               autoFocus
             />
+            <div className="flex flex-wrap gap-3 mt-4">
+              {['Rex', '訪客 1', '訪客 2', '訪客 3'].map(tag => (
+                <button
+                  key={tag}
+                  onClick={() => setName(tag)}
+                  className={`text-xl font-bold py-2 px-5 rounded-full border-3 transition-all active:scale-95 ${name === tag ? 'bg-orange-500 text-white border-orange-600 shadow-lg' : 'bg-white text-orange-700 border-orange-300 hover:bg-orange-100'}`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* 選擇書本 */}

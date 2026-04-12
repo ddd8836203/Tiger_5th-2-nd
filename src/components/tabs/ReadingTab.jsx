@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
-import { Volume2, HelpCircle, Star, Languages } from 'lucide-react';
-import { speakText } from '../../utils';
+import React, { useState, useCallback, useRef } from 'react';
+import { Volume2, HelpCircle, Star, Languages, StopCircle } from 'lucide-react';
+import { speakText, getSpeechRate } from '../../utils';
 import Modal from '../Modal';
 import QuizEngine from '../quiz/QuizEngine';
+
+// 把段落拆成句子陣列
+function splitSentences(text) {
+  // 用句號、問號、驚嘆號拆句，保留分隔符
+  const parts = text.split(/(?<=[.!?])\s+/);
+  return parts.filter(s => s.trim().length > 0);
+}
 
 export default function ReadingTab({ unitData, session }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentExpl, setCurrentExpl] = useState(null);
   const [showTranslation, setShowTranslation] = useState(false);
+  
+  // 高亮狀態
+  const [speakingChunkId, setSpeakingChunkId] = useState(null);
+  const [currentSentenceIdx, setCurrentSentenceIdx] = useState(-1);
+  const stopRef = useRef(false);
 
   const openExplanation = (chunk) => {
     setCurrentExpl(chunk);
@@ -18,6 +30,79 @@ export default function ReadingTab({ unitData, session }) {
   const textData = unitData?.textData || [];
   const questions = unitData?.quizzes?.reading || [];
 
+  // 逐句朗讀
+  const handleSpeak = useCallback((chunk) => {
+    // 如果正在唸同一段，停止
+    if (speakingChunkId === chunk.id) {
+      window.speechSynthesis.cancel();
+      setSpeakingChunkId(null);
+      setCurrentSentenceIdx(-1);
+      stopRef.current = true;
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    stopRef.current = false;
+
+    const sentences = splitSentences(chunk.eng);
+    if (sentences.length === 0) return;
+
+    setSpeakingChunkId(chunk.id);
+    setCurrentSentenceIdx(0);
+
+    const speakNext = (idx) => {
+      if (stopRef.current || idx >= sentences.length) {
+        setSpeakingChunkId(null);
+        setCurrentSentenceIdx(-1);
+        return;
+      }
+
+      setCurrentSentenceIdx(idx);
+
+      // 用 speakText 自動挑最佳語音
+      speakText(sentences[idx], {
+        rate: getSpeechRate(),
+        skipCancel: true,
+        onEnd: () => {
+          if (!stopRef.current) {
+            speakNext(idx + 1);
+          }
+        },
+        onError: () => {
+          setSpeakingChunkId(null);
+          setCurrentSentenceIdx(-1);
+        }
+      });
+    };
+
+    speakNext(0);
+  }, [speakingChunkId]);
+
+  // 停止朗讀
+  const handleStop = () => {
+    window.speechSynthesis.cancel();
+    stopRef.current = true;
+    setSpeakingChunkId(null);
+    setCurrentSentenceIdx(-1);
+  };
+
+  // 渲染帶高亮的文字
+  const renderText = (text, chunkId) => {
+    if (speakingChunkId !== chunkId) return text;
+    
+    const sentences = splitSentences(text);
+    return sentences.map((sentence, idx) => (
+      <span
+        key={idx}
+        className={idx === currentSentenceIdx 
+          ? 'bg-yellow-300 rounded-lg px-1 py-0.5 transition-all duration-300' 
+          : 'transition-all duration-300'}
+      >
+        {sentence}{idx < sentences.length - 1 ? ' ' : ''}
+      </span>
+    ));
+  };
+
   return (
     <div className="animate-fade-in">
       <h2 className="text-3xl font-extrabold text-blue-800 mb-6 flex items-center gap-2">
@@ -25,16 +110,20 @@ export default function ReadingTab({ unitData, session }) {
       </h2>
       <div className="space-y-6">
         {textData.map((chunk) => (
-          <div key={chunk.id} className="bg-white p-6 rounded-[2rem] shadow-md border-2 border-transparent hover:border-blue-300 transition-all group">
+          <div key={chunk.id} className={`bg-white p-6 rounded-[2rem] shadow-md border-2 transition-all group ${speakingChunkId === chunk.id ? 'border-yellow-400 shadow-yellow-200' : 'border-transparent hover:border-blue-300'}`}>
             <p className="text-3xl leading-snug text-gray-800 font-bold mb-6">
-              {chunk.eng}
+              {renderText(chunk.eng, chunk.id)}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={() => speakText(chunk.eng)}
-                className="flex-1 bg-blue-100 hover:bg-blue-200 text-blue-700 py-4 rounded-2xl text-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                onClick={() => handleSpeak(chunk)}
+                className={`flex-1 py-4 rounded-2xl text-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform ${speakingChunkId === chunk.id ? 'bg-yellow-200 text-yellow-800' : 'bg-blue-100 hover:bg-blue-200 text-blue-700'}`}
               >
-                <Volume2 size={32} /> 聽老師唸
+                {speakingChunkId === chunk.id ? (
+                  <><StopCircle size={32} /> 停止</>
+                ) : (
+                  <><Volume2 size={32} /> 聽老師唸</>
+                )}
               </button>
               <button 
                 onClick={() => openExplanation(chunk)}
@@ -56,7 +145,6 @@ export default function ReadingTab({ unitData, session }) {
         />
       )}
 
-      {/* 彈出視窗：這是什麼意思？ */}
       <Modal 
         isOpen={modalOpen} 
         onClose={() => setModalOpen(false)} 
